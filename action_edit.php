@@ -16,6 +16,7 @@ $result = mysqli_query($mysqli, $query);
 foreach ($result as $barang) {
     $name = $barang["nama_barang"];
     $price = $barang["harga_barang"];
+    $foto = $barang["foto"];
 }
 
 if (isset($_POST['name'])) {
@@ -37,11 +38,10 @@ if (!empty($files['name'])) {
         unlink($foto);
     }
 } else {
-    $filepath = "";
+    $filepath = $foto;
     $upload = false;
 }
-
-if ($upload != true && $filepath != "") {
+if ($upload != true && $filepath != $foto) {
     exit("Gagal mengupload file <a href='form_edit.php?id={$id_barang}'>Kembali</a>");
 }
 
